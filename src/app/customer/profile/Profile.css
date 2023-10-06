@@ -1,0 +1,89 @@
+/* .profile-heading{
+    position: relative;
+    left:8vw;
+    padding-left:1vw;
+    max-width: 23vw;
+    margin-top: 2vw;
+    color:var(--foodapp-red);
+    border-bottom:0.8rem dashed var(--foodapp-red); */
+    /* border-bottom: 4px dashed var(--foodapp-orange); */
+/* } */
+
+/* .profile-main-container{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    flex-wrap:wrap;
+    border-radius: 8px;
+    left:8vw;
+    height:80vh;
+    background-color: var(--primary-bg);
+}
+
+.demo{
+    position:relative;
+    left:19vw;
+    min-width: 83vw;
+}
+
+.profile-info-container{
+    position: relative;
+    display: flex;
+    width:50vw;
+    flex-direction:row;
+    top:5vw;
+    gap:5vw;
+}
+
+.profile-info-display-container{
+    display: flex;
+    flex-direction: column;
+    gap:0.5vw;
+}
+
+.profile-info{
+    display:flex;
+    flex-direction: column;
+}
+
+.profile-image{
+    height:auto;
+    width: 25vh;
+    position: relative;
+    border-radius: 8px;
+    padding:1vw;
+    top:6vh;
+    border:4px dashed var(--foodapp-red)
+}
+
+.profile-label{
+    font-size: 0.85rem;
+    font-weight: bold;
+    color:var(--foodapp-red);
+}
+
+.profile-display{
+    font-size:1.1rem;
+}
+
+.profile-button-container{
+    display:flex;
+    position: relative;
+    margin-top: 1vw;
+    gap:2rem;
+}
+
+.profile-button{
+    background-color: var(--foodapp-red);
+    color:white;
+    border:transparent;
+    border-radius: 8px;
+    padding:0.7vw;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.profile-button:hover{
+    cursor: pointer;
+    background-color: var(--foodapp-gray);
+} */

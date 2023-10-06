@@ -1,0 +1,27 @@
+.max-width{
+    max-width:1100px;
+    margin: 0px auto;
+}
+
+.absolute-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cursor-pointer{
+    cursor:pointer;
+}
+
+.collection-title{
+    font-size:30px;
+    color:var(--heading-text);
+    margin-bottom: 20px;
+    font-weight:600;
+}
+
+.heading-title{
+    font-size:2rem;
+    color:var(--heading-text);
+    font-weight:600;
+}

@@ -1,0 +1,16 @@
+body{
+    --primary-box-shadow:rgb(28 28 28 / 8%) 0px 2px 8px;
+    --border-white: rgb(232,232,232);
+    --primary-bg:rgb(255,255,255);
+    --foodapp-gray: #828282;
+    --foodapp-red: #fa5263;
+    --foodapp-green: #6dd86d;
+    --foodapp-orange: #ea9942;
+    --gray: rgb(207,207,207);
+    --inactive-text:#696969;
+    --inactive-color:#F8F8F8;
+    --filter-text:#9C9C9C;
+    --heading-text:#1C1C1C;
+    --hover-gray: rgb(248,248,248);
+    --collection-shadow: rgb(0 0 0/8%) 0px 3px 12px;
+}
