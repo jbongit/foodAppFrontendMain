@@ -1,13 +1,15 @@
 "use client"
+import { isLoggedIn } from "@/auth/auth";
 import userContext from "@/context/userContext";
 import { myAxios, privateAxios } from "@/services/helper";
 import useStore from "@/store/store";
-import { Skeleton , Avatar} from "@mui/material";
+import { Skeleton } from "@mui/material";
 import Image from "next/image";
 import React ,{ useState , useEffect , useContext} from "react";
 import {toast} from "react-toastify";
 
 const Featured = () => {
+  const islogin=isLoggedIn();
   const {increment}=useStore();
   const userContextData=useContext(userContext);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,7 +28,6 @@ const Featured = () => {
         const response=await myAxios.get("restaurant/1/products");
         setFeaturedProducts(response.data);
         setIsLoading(true);
-        console.log(response.data);
       }
       catch(error){
         toast.error(error.response.data);
@@ -71,7 +72,7 @@ const Featured = () => {
             <h1 className="text-xl font-bold uppercase xl:text-2xl 2xl:text-3xl relative top-2">{item.productName}</h1>
             <p className="p-2 2xl:p-4">{item.productDesc}</p>
             <span className="text-xl font-bold">Rs. {item.productPrice}</span>
-            <button onClick={()=>handleAddToCart(userContextData.user.data.userId,item.productId)} className="bg-red-500 relative top-2 text-white p-2 rounded-md">
+            <button onClick={()=>islogin?handleAddToCart(userContextData.user.data.userId,item.productId):toast.error("Please Login")} className="bg-red-500 relative top-2 text-white p-2 rounded-md">
               Add to Cart
             </button>
           </div>

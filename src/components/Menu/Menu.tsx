@@ -1,8 +1,13 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import CartIcon from "../Navbar/CartIcon/CartIcon";
+import userContext from "@/context/userContext";
+import { doLogout } from "@/auth/auth";
+import {toast} from "react-toastify";
+import { useRouter } from "next/navigation";
+import useStore from "@/store/store";
 
 const links = [
   { id: 1, title: "HomePage", url: "/" },
@@ -12,9 +17,27 @@ const links = [
 ];
 
 const Menu = () => {
+    const {setCartItemsCount}=useStore();
+
+    const router=useRouter();
+
     const [open, setOpen] = useState(false);
   
-    const user = false;
+    const userContextData = useContext(userContext);
+
+    const logout = () => {
+      doLogout(() => {
+        //logged out
+        userContextData.setUser({
+          data: null,
+          login: false,
+        });
+        setCartItemsCount(0);
+        toast.success("Logout Successfully");
+        router.push("/");
+      });
+    };
+
     return (
       <div>
         <Image
@@ -34,13 +57,21 @@ const Menu = () => {
             ))}
   
             <Link
-              href={user ? "/orders" : "login"}
+              href={userContextData.user.login ? "/orders" : "/login"}
             >
-              {user ? "Orders" : "Login"}
+              {userContextData.user.login? "Orders" : "Login"}
             </Link>
+
+            {userContextData.user.login && <Link className="" href="/login" onClick={logout}>
+                Logout
+            </Link>
+            }  
+            
+
             <Link href="/cart">
               <CartIcon />
             </Link>
+            
           </div>
         )}
       </div>

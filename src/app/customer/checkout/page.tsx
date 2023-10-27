@@ -5,10 +5,12 @@ import { Elements } from "@stripe/react-stripe-js";
 import css from "./Checkout.module.scss";
 import axios from "axios";
 import CheckoutForm from "./CheckoutForm";
-import { privateAxios } from "../../services/helper";
+import { privateAxios } from "../../../services/helper";
 import { getCurrentUserDetail } from "@/auth/auth";
 
-const stripePromise = loadStripe("ENTER PUBLIC API KEY");
+const stripePromise = loadStripe(
+  "ENTER YOUR STRIPE PUBLIC KEY"
+);
 
 export default function Checkout() {
   type formattedcartItems ={

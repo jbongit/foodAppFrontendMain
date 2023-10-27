@@ -4,7 +4,7 @@ import "./Profile.css";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { privateAxios } from "@/services/helper";
-import { doLogout, getCurrentUserDetail} from "@/auth/auth";
+import { doLogout, getCurrentUserDetail } from "@/auth/auth";
 import userContext from "@/context/userContext";
 
 const Profile = () => {
@@ -59,6 +59,12 @@ const Profile = () => {
   const updateProfile= async ()=>{
     try{
       await privateAxios.put("/customer/"+custId,updatedCustomer);
+      const users=userContextData.user.data;
+      users.userName=updatedCustomer.custName;
+      userContextData.setUser({
+        data: users,
+        login:true}
+        )
       toast.success("Profile Information Updated Successfully")
     }catch(error){
       toast.error(error.response.data);

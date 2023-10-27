@@ -7,8 +7,11 @@ import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { BsFillCartDashFill } from "react-icons/bs";
 import Link from "next/link";
+import { Skeleton } from "@mui/material";
 
 const CartPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
   type cartItem = {
     cartItemId: number;
     custId: number;
@@ -47,7 +50,7 @@ const CartPage = () => {
         const response = await privateAxios.get(
           "customer/" + getCurrentUserDetail().userId + "/cartItems"
         );
-
+        setIsLoading(true);
         let sum = 0;
         response.data.forEach((element: cartItem) => {
           sum += element.quantity * parseInt(element.product.productPrice);
@@ -55,7 +58,7 @@ const CartPage = () => {
         setCartItemsPrice(sum);
         setCartItems(response.data);
       } catch (error) {
-        toast.error(error.response.data);
+        toast.error("Please Login");
       }
     };
     fetchCartItems();
@@ -97,37 +100,73 @@ const CartPage = () => {
             <i className="fi fi-rr-trash"></i>
           </span>
         </div>
-        {/* CART ITEMS */}
-        {cartItems.map((item) => (
-          <div
-            key={item.cartItemId}
-            className="flex items-center justify-between mb-4"
-          >
-            <Image src="/temporary/p1.png" alt="" width={100} height={100} />
-            <div className="">
-              <h1 className="uppercase text-xl font-bold">
-                {item.product.productName}
-              </h1>
-              <span>{item.product.productDesc}</span>
+        {!isLoading ? (
+          <div className=" relative left-2.5 h-[70vh] md:h-[80vh] ">
+            <div className="h-1/3 p-2">
+              <Skeleton
+                variant="rounded"
+                animation="wave"
+                height="100%"
+                width="100%"
+              />
             </div>
-            <h2 className="font-bold">Rs. {item.product.productPrice}</h2>
-            <h2 className="font-bold">{item.quantity}</h2>
-            <span
-              onClick={() => {
-                deleteItems(
-                  getCurrentUserDetail().userId,
-                  item.product.productId
-                );
-              }}
-              className="cursor-pointer md:text-xl"
-            >
-              <BsFillCartDashFill />
-            </span>
+            <div className="h-1/3 p-2">
+              <Skeleton
+                variant="rounded"
+                animation="wave"
+                height="100%"
+                width="100%"
+              />
+            </div>
+            <div className="h-1/3 p-2">
+              <Skeleton
+                variant="rounded"
+                animation="wave"
+                height="100%"
+                width="100%"
+              />
+            </div>
           </div>
-        ))}
+        ) : (
+          <span>
+            {/* CART ITEMS */}
+            {cartItems.map((item) => (
+              <div
+                key={item.cartItemId}
+                className="flex items-center justify-between mb-4 scale-[0.95] md:scale-[1]"
+              >
+                <Image
+                  src="/temporary/p1.png"
+                  alt=""
+                  width={100}
+                  height={100}
+                />
+                <div className="">
+                  <h1 className="uppercase md:text-xl font-bold">
+                    {item.product.productName}
+                  </h1>
+                  <span>{item.product.productDesc}</span>
+                </div>
+                <h2 className="font-bold">Rs. {item.product.productPrice}</h2>
+                <h2 className="font-bold">{item.quantity}</h2>
+                <span
+                  onClick={() => {
+                    deleteItems(
+                      getCurrentUserDetail().userId,
+                      item.product.productId
+                    );
+                  }}
+                  className="cursor-pointer md:text-xl"
+                >
+                  <BsFillCartDashFill />
+                </span>
+              </div>
+            ))}
+          </span>
+        )}
       </div>
       {/* PAYMENT CONTAINER */}
-      <div className="h-1/2 p-4 bg-fuchsia-50 flex flex-col gap-4 justify-center lg:h-full lg:w-1/3 2xl:w-1/2 lg:px-20 xl:px-40 2xl:text-xl 2xl:gap-6">
+      <div className="h-1/2 p-4  bg-fuchsia-50 text-sm flex flex-col gap-4 justify-center lg:h-full lg:w-1/3 2xl:w-1/2 lg:px-20 xl:px-40 lg:text-base 2xl:gap-6">
         <div className="flex justify-between">
           <span className="">Subtotal ({cartItemsCount} items)</span>
           <span className="">Rs. {cartItemsPrice}</span>
@@ -145,8 +184,8 @@ const CartPage = () => {
           <span className="">TOTAL(INCL. VAT)</span>
           <span className="font-bold">Rs. {cartItemsPrice}</span>
         </div>
-        <Link href="/checkout">
-          <button className="bg-red-500 text-white p-3 rounded-md w-1/2 self-end">
+        <Link href="/customer/checkout">
+          <button className="bg-red-500 text-white p-1 md:p-2 rounded-md w-1/2 self-end">
             CHECKOUT
           </button>
         </Link>

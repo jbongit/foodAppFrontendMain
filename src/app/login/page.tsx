@@ -46,8 +46,6 @@ const Login = () => {
     fetchCartItems();
   }, []);
 
-
-
   const userContxtData = useContext(userContext);
   const router=useRouter();
 
@@ -93,6 +91,8 @@ const Login = () => {
             data: data.user,
             login: true,
           });
+
+          console.log(data.user);
 
           const fetchCartItems = async () => {
             try {
@@ -185,7 +185,7 @@ const Login = () => {
     <section className="login-wrapper absolute-center">
     <img className="login-bg" src="assets/food-app-bg-image.png" alt="login-bg"></img>
     <Components.Container>
-      <Components.SignUpContainer signinIn={signIn}>
+      <Components.SignUpContainer signin={signIn}>
         <Components.Form>
           <Components.Title>Create Account</Components.Title>
           <Components.Input type="text" value={signUpDetail.custName} onChange={(e)=>handleSignUpChange(e,"custName")} placeholder="Name" />
@@ -196,7 +196,7 @@ const Login = () => {
         </Components.Form>
       </Components.SignUpContainer>
 
-      <Components.SignInContainer signinIn={signIn}>
+      <Components.SignInContainer signin={signIn}>
         <Components.Form>
           <Components.Title>Sign in</Components.Title>
           <Components.Input type="email" value={loginDetail.username} onChange={(e)=>handleChange(e,"username")} placeholder="Email"/>
@@ -207,9 +207,9 @@ const Login = () => {
         </Components.Form>
       </Components.SignInContainer>
 
-      <Components.OverlayContainer signinIn={signIn}>
-        <Components.Overlay signinIn={signIn}>
-          <Components.LeftOverlayPanel signinIn={signIn}>
+      <Components.OverlayContainer signin={signIn}>
+        <Components.Overlay signin={signIn}>
+          <Components.LeftOverlayPanel signin={signIn}>
             <Components.Title>Welcome Back!</Components.Title>
             <Components.Paragraph>
               To keep Eating Tasty and Healthy Food , Please Login from here !!
@@ -219,7 +219,7 @@ const Login = () => {
             </Components.GhostButton>
           </Components.LeftOverlayPanel>
 
-          <Components.RightOverlayPanel signinIn={signIn}>
+          <Components.RightOverlayPanel signin={signIn}>
             <Components.Title>Hello, Foodie !!</Components.Title>
             <Components.Paragraph>
               Join Us Today and Get Ready to Eat Healthy and Tasty Food
