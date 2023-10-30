@@ -9,7 +9,7 @@ import { privateAxios } from "../../../services/helper";
 import { getCurrentUserDetail } from "@/auth/auth";
 
 const stripePromise = loadStripe(
-  "ENTER YOUR STRIPE PUBLIC KEY"
+  "pk_test_51NYpX6SCTsCpWm2mI4iPzvn69xlAOz3PMKsRaAkMUER5mDzdgfb6Y1kz5ziKYSKJ0Ohu1d2xGVRKE8lzB1kELS0H00SPRFSvkl"
 );
 
 export default function Checkout() {
